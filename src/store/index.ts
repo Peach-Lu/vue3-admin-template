@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import router from '@/router'
-import { IRootState } from './type'
+import { IRootState } from '@/store/type.ts'
 import Localcache from '@/utils/cache'
 import { mapMenusToRoutes } from '@/utils/map-menus'
 export default createStore({

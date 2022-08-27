@@ -1,4 +1,4 @@
-import allRoute from '../router/allRoute'
+import allRoute from '@/router/allRoute'
 export const mapMenusToRoutes = (userMenu: any) => {
   // 先定义一个空数组
   const routes: any = []
