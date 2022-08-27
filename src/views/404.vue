@@ -8,7 +8,10 @@
 <script lang="ts" setup>
 import router from "@/router";
 const handleBack = () => {
-  router.go(-1);
+  // router.go(-1);
+  router.push({
+    path: "/main",
+  });
 };
 </script>
 

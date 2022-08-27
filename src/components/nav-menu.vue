@@ -1,7 +1,7 @@
 <template>
   <div class="nav-menu">
     <el-menu
-      default-active="2"
+      default-active="40"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
@@ -53,20 +53,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-const router = useRouter()
-const store = useStore()
-const menu = computed(() => store.state.menu)
-const handleOpen = () => null
-const handleClose = () => null
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+const router = useRouter();
+const store = useStore();
+const menu = computed(() => store.state.menu);
+const handleOpen = () => null;
+const handleClose = () => null;
 const handleClickRouter = (item: any) => {
-  console.log(item.url)
+  console.log(item.url);
   router.push({
-    path: item.url
-  })
-}
+    path: item.url,
+  });
+};
 </script>
 
 <style lang="less" scoped>
