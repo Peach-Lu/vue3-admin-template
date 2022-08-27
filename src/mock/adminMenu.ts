@@ -41,7 +41,25 @@ export default [
         name: '用户管理',
         sort: 100,
         type: 2,
-        parentId: 1
+        parentId: 1,
+        children: [
+          {
+            id: 21,
+            url: '/main/system/user/create',
+            name: '创建用户',
+            sort: 1,
+            type: 3,
+            parentId: 2
+          },
+          {
+            id: 22,
+            url: '/main/system/user/update',
+            name: '修改用户',
+            sort: 2,
+            type: 3,
+            parentId: 2
+          }
+        ]
       },
       {
         id: 3,

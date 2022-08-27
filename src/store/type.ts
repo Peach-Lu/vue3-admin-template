@@ -1,4 +1,4 @@
 export interface IRootState {
-  menu: any[]
-  userMenu: any[]
+  menu: any[];
+  userMenu: any[];
 }

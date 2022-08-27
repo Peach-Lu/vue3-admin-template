@@ -28,9 +28,11 @@
                     v-for="subItem2 in subItem.children"
                     :key="subItem2.id"
                   >
-                    <el-menu-item :index="subItem2.id + ''">{{
-                      subItem2.name
-                    }}</el-menu-item>
+                    <el-menu-item
+                      @click="handleClickRouter(subItem2)"
+                      :index="subItem2.id + ''"
+                      >{{ subItem2.name }}</el-menu-item
+                    >
                   </template>
                 </el-sub-menu>
               </template>
@@ -61,9 +63,9 @@ const handleOpen = () => null
 const handleClose = () => null
 const handleClickRouter = (item: any) => {
   console.log(item.url)
-  // router.push({
-  //   path: item.url
-  // })
+  router.push({
+    path: item.url
+  })
 }
 </script>
 

@@ -15,6 +15,16 @@ export default [
     component: () => import('@/views/system/menu.vue')
   },
   {
+    path: '/main/system/user/create',
+    name: 'createUser',
+    component: () => import('@/views/system/userChildren/createUser.vue')
+  },
+  {
+    path: '/main/system/user/update',
+    name: 'updateUser',
+    component: () => import('@/views/system/userChildren/updateUser.vue')
+  },
+  {
     path: '/main/system/role',
     name: 'role',
     component: () => import('@/views/system/role.vue')

@@ -8,15 +8,15 @@
         <el-header style="padding: 0">
           <navHeader></navHeader>
         </el-header>
-        Main</el-main
-      >
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script setup lang="ts">
-import navMenu from '@/components/nav-menu.vue'
-import navHeader from '@/components/nav-header.vue'
+import navMenu from "@/components/nav-menu.vue";
+import navHeader from "@/components/nav-header.vue";
 </script>
 
 <style scoped></style>

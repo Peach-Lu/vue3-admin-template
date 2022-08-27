@@ -18,24 +18,24 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { login } from '@/mock/api/login'
-const router = useRouter()
-const store = useStore()
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { login } from "@/mock/api/login";
+const router = useRouter();
+const store = useStore();
 const form = reactive({
-  username: 'admin',
-  password: '123456'
-})
+  username: "admin",
+  password: "123456",
+});
 
 const handleClick = async () => {
-  const res = await login(form.username, form.password)
-  if (res) store.dispatch('login', res)
+  const res = await login(form.username, form.password);
+  if (res) store.dispatch("login", res);
   router.push({
-    path: '/main'
-  })
-}
+    path: "/main",
+  });
+};
 
 // function handleClick() {
 //   router.push({
