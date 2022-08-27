@@ -16,13 +16,21 @@ export default createStore({
     changeUserMenus(state, userMenu) {
       Localcache.setCache('userMenu', userMenu)
       const routes = mapMenusToRoutes(userMenu)
-      console.log('routers', routes)
       if (routes && routes.length) {
         for (const item of routes) {
-          router.addRoute('main', item)
+          router.addRoute('main', item) // 循环遍历加入到 main children里面
         }
       }
       state.userMenu = routes
+    },
+    // 退出登录置空
+    logout(state) {
+      state.menu = []
+      state.userMenu = []
+      Localcache.clearCache()
+      router.push({
+        path: '/login'
+      })
     }
   },
   actions: {
@@ -31,11 +39,13 @@ export default createStore({
       commit('changeUserMenus', paylad)
       Localcache.setCache('menu', paylad)
     },
+    logout({ commit }) {
+      commit('logout')
+    },
     getMenu({ commit }) {
       const menu = Localcache.getCache('menu')
       if (menu) commit('setMenu', menu)
       const userMenu = Localcache.getCache('userMenu')
-      console.log('usermenu', userMenu)
       if (userMenu) commit('changeUserMenus', userMenu)
     }
   },
