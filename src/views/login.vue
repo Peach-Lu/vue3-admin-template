@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <el-card class="login-form">
+      username : admin / demo
       <el-form :model="form">
         <el-form-item label="username">
           <el-input v-model="form.username" />
@@ -17,18 +18,30 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { login } from '@/mock/api/login'
+const router = useRouter()
+const store = useStore()
 const form = reactive({
-  username: "Peach",
-  password: "123456",
-});
-function handleClick() {
+  username: 'admin',
+  password: '123456'
+})
+
+const handleClick = async () => {
+  const res = await login(form.username, form.password)
+  if (res) store.dispatch('login', res)
   router.push({
-    path: "/home",
-  });
+    path: '/main'
+  })
 }
+
+// function handleClick() {
+//   router.push({
+//     path: '/main'
+//   })
+// }
 </script>
 
 <style lang="less" scoped>

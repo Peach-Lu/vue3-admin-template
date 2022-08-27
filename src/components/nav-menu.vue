@@ -6,6 +6,7 @@
       @open="handleOpen"
       @close="handleClose"
       text-color="#b7bdc3"
+      unique-opened
       active-text-color="#0a60bd"
       background-color="#001529"
     >
@@ -35,9 +36,11 @@
               </template>
               <!-- 没有children的话，显示二级菜单 -->
               <template v-else>
-                <el-menu-item :index="subItem.id + ''">{{
-                  subItem.name
-                }}</el-menu-item>
+                <el-menu-item
+                  :index="subItem.id + ''"
+                  @click="handleClickRouter(subItem)"
+                  >{{ subItem.name }}</el-menu-item
+                >
               </template>
             </template>
           </template>
@@ -48,10 +51,20 @@
 </template>
 
 <script setup lang="ts">
-import roleMenu from '@/mock/rolemenu'
-const menu: any[] = roleMenu
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+const router = useRouter()
+const store = useStore()
+const menu = computed(() => store.state.menu)
 const handleOpen = () => null
 const handleClose = () => null
+const handleClickRouter = (item: any) => {
+  console.log(item.url)
+  // router.push({
+  //   path: item.url
+  // })
+}
 </script>
 
 <style lang="less" scoped>

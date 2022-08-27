@@ -5,7 +5,9 @@
         <navMenu></navMenu>
       </el-aside>
       <el-main>
-        <el-header>Header</el-header>
+        <el-header style="padding: 0">
+          <navHeader></navHeader>
+        </el-header>
         Main</el-main
       >
     </el-container>
@@ -13,7 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import navMenu from "@/components/nav-menu.vue";
+import navMenu from '@/components/nav-menu.vue'
+import navHeader from '@/components/nav-header.vue'
 </script>
 
 <style scoped></style>
