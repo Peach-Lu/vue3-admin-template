@@ -23,7 +23,7 @@ export default createStore({
       }
       state.userMenu = routes
     },
-    // 退出登录置空
+    // 退出登录 清空数据
     logout(state) {
       state.menu = []
       state.userMenu = []
