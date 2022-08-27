@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import router from '@/router'
-import { IRootState } from '@/store/type.ts'
+import { IRootState } from '@/store/type'
 import Localcache from '@/utils/cache'
 import { mapMenusToRoutes } from '@/utils/map-menus'
 export default createStore({
@@ -22,6 +22,7 @@ export default createStore({
         }
       }
       state.userMenu = routes
+      console.log('userMenu', routes)
     },
     // 退出登录 清空数据
     logout(state) {
