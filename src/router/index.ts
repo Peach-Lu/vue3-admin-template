@@ -21,7 +21,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/404.vue')
   }
 ]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

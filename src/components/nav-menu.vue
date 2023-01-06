@@ -1,12 +1,11 @@
 <template>
   <div class="nav-menu">
     <el-menu
-      default-active="40"
+      :default-active="activeId"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
       text-color="#b7bdc3"
-      unique-opened
       active-text-color="#0a60bd"
       background-color="#001529"
     >
@@ -14,7 +13,9 @@
       <template v-for="item in menu" :key="item.id">
         <el-sub-menu :index="item.id + ''">
           <template #title>
-            <el-icon><Menu /></el-icon>
+            <el-icon>
+              <Menu />
+            </el-icon>
             <span>{{ item.name }}</span>
           </template>
           <!-- 二级菜单 -->
@@ -53,16 +54,42 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, watch, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 const router = useRouter()
+const route = useRoute()
 const store = useStore()
+const activeId = ref('40')
 const menu = computed(() => store.state.menu)
+watch(
+  () => route.path,
+  () => {
+    console.log('menu', menu.value)
+    const result = getFlatArr(menu.value).find(
+      (item) => item.url === route.path
+    )
+    if (result && result.id) {
+      activeId.value = result.id + ''
+    }
+  },
+  {
+    deep: true
+  }
+)
+const getFlatArr = (arr) => {
+  return arr.reduce((a, item) => {
+    let flatArr = [...a, item]
+    // 可以在此处限制各种需要的条件，在展示字段前加空格，——之类的，以及其它情况
+    if (item.children && item.children.length > 0) {
+      flatArr = [...flatArr, ...getFlatArr(item.children)]
+    }
+    return flatArr
+  }, [])
+}
 const handleOpen = () => null
 const handleClose = () => null
 const handleClickRouter = (item: any) => {
-  console.log(item.url)
   router.push({
     path: item.url
   })
@@ -74,6 +101,7 @@ const handleClickRouter = (item: any) => {
   height: 100vh;
   background-color: #001529;
 }
+
 .el-menu {
   border-right: 0;
 }
