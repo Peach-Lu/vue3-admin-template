@@ -6,13 +6,12 @@
 </template>
 
 <script lang="ts" setup>
-import router from "@/router";
+import router from '@/router'
 const handleBack = () => {
-  // router.go(-1);
-  router.push({
-    path: "/main",
-  });
-};
+  router.go(-1)
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

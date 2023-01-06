@@ -1,15 +1,14 @@
-import allRoute from "@/router/allRoute";
+import allRoute from '@/router/allRoute'
 export const mapMenusToRoutes = (userMenu: any) => {
   // 先定义一个空数组
-  const routes: any = [];
+  const routes: any = []
   const _recurseGetRoute = (userMenu: any) => {
     for (const menu of userMenu) {
-      const route = allRoute.find((item) => item.path == menu.url);
-      if (route) routes.push(route);
-      if (menu.children && menu.children.length)
-        _recurseGetRoute(menu.children);
+      const route = allRoute.find((item) => item.path == menu.url)
+      if (route) routes.push(route)
+      if (menu.children && menu.children.length) _recurseGetRoute(menu.children)
     }
-  };
-  _recurseGetRoute(userMenu);
-  return routes;
-};
+  }
+  _recurseGetRoute(userMenu)
+  return routes
+}

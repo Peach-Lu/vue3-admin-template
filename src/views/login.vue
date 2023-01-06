@@ -10,9 +10,7 @@
           <el-input v-model="form.password" />
         </el-form-item>
       </el-form>
-      <el-button type="primary" class="login-btn" @click="handleClick"
-        >登录</el-button
-      >
+      <el-button type="primary" class="login-btn" @click="handleClick">登录</el-button>
     </el-card>
   </div>
 </template>
@@ -33,7 +31,7 @@ const handleClick = async () => {
   const res = await login(form.username, form.password)
   if (res) store.dispatch('login', res)
   router.push({
-    path: '/main/analysis/overview'
+    path: '/analysis/overview'
   })
 }
 
@@ -51,9 +49,11 @@ const handleClick = async () => {
   align-items: center;
   height: 100%;
   width: 100%;
+
   .login-form {
     width: 330px;
     padding: 20px 50px;
+
     .login-btn {
       width: 100%;
     }
