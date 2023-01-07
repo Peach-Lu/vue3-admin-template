@@ -1,6 +1,8 @@
 <template>
-  <div>listlist</div>
-  <el-input v-model="value"></el-input>
+  <div>
+    <div>listlist</div>
+    <el-input v-model="value"></el-input>
+  </div>
 </template>
 
 <script setup lang="ts">

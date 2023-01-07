@@ -1,14 +1,7 @@
 <template>
   <div class="nav-menu">
-    <el-menu
-      :default-active="activeId"
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      text-color="#b7bdc3"
-      active-text-color="#0a60bd"
-      background-color="#001529"
-    >
+    <el-menu :collapse="width < 900" :default-active="activeId" class="el-menu-vertical-demo" @open="handleOpen"
+      @close="handleClose" text-color="#b7bdc3" active-text-color="#0a60bd" background-color="#001529">
       <!-- 一级菜单 -->
       <template v-for="item in menu" :key="item.id">
         <el-sub-menu :index="item.id + ''">
@@ -25,25 +18,18 @@
               <template v-if="subItem.children && subItem.children.length">
                 <el-sub-menu :index="subItem.id + ''">
                   <template #title>{{ subItem.name }}</template>
-                  <template
-                    v-for="subItem2 in subItem.children"
-                    :key="subItem2.id"
-                  >
-                    <el-menu-item
-                      @click="handleClickRouter(subItem2)"
-                      :index="subItem2.id + ''"
-                      >{{ subItem2.name }}</el-menu-item
-                    >
+                  <template v-for="subItem2 in subItem.children" :key="subItem2.id">
+                    <el-menu-item @click="handleClickRouter(subItem2)" :index="subItem2.id + ''">{{
+                      subItem2.name
+                    }}</el-menu-item>
                   </template>
                 </el-sub-menu>
               </template>
               <!-- 没有children的话，显示二级菜单 -->
               <template v-else>
-                <el-menu-item
-                  :index="subItem.id + ''"
-                  @click="handleClickRouter(subItem)"
-                  >{{ subItem.name }}</el-menu-item
-                >
+                <el-menu-item :index="subItem.id + ''" @click="handleClickRouter(subItem)">{{
+                  subItem.name
+                }}</el-menu-item>
               </template>
             </template>
           </template>
@@ -54,6 +40,8 @@
 </template>
 
 <script setup lang="ts">
+import { useWindowSize } from '@vueuse/core'
+const { width, height } = useWindowSize()
 import { computed, watch, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'

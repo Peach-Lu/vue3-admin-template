@@ -1,6 +1,8 @@
 <template>
-  <div>缓存dashboard</div>
-  <el-input v-model="value"></el-input>
+  <div>
+    <div>缓存dashboard</div>
+    <el-input v-model="value"></el-input>
+  </div>
 </template>
 
 <script setup lang="ts">
