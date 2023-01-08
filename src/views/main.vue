@@ -8,7 +8,7 @@
         {{ width }}
         {{ height }}
         <el-header style="padding: 0" height="auto">
-          {{ breakpoints }}
+          {{ windowbranck }}
           <navHeader></navHeader>
         </el-header>
         <router-view v-slot="{ Component }">
@@ -29,12 +29,13 @@
 <script setup lang="ts">
 import navMenu from '@/components/nav-menu.vue'
 import navHeader from '@/components/nav-header.vue'
+import windowbranck from '@/utils/branckOption'
 // import { useBreakpoints } from '@vueuse/core'
 
 import {
   useWindowSize,
-  useBreakpoints,
-  breakpointsTailwind
+  useBreakpoints
+  // breakpointsTailwind
 } from '@vueuse/core'
 
 const { width, height } = useWindowSize()
@@ -44,17 +45,28 @@ const { width, height } = useWindowSize()
 //   laptop: 1024,
 //   desktop: 1280
 // })
-const breakpoints = useBreakpoints(breakpointsTailwind)
 
-const smAndLarger = breakpoints.greaterOrEqual('sm') // sm and larger
-const largerThanSm = breakpoints.greater('sm') // only larger than sm
-const lgAndSmaller = breakpoints.smallerOrEqual('lg') // lg and smaller
-const smallerThanLg = breakpoints.smaller('lg') // only smaller than lg
-console.log(smAndLarger)
-console.log(largerThanSm)
-console.log(lgAndSmaller)
-console.log(largerThanSm)
-console.log(smallerThanLg)
+const breakpoints = useBreakpoints({
+  phone: 720,
+  tablet: 940,
+  laptop: 1280,
+  desktop: 1500
+})
+// const breakpoints: any = useBreakpoints(breakpointsTailwind)
+/** 电脑设备 */
+const isPC = breakpoints.greater('laptop')
+console.log('isPC', isPC.value)
+/** 平板设备 */
+const isTablet = breakpoints.between('tablet', 'laptop')
+console.log('isTablet', isTablet.value)
+
+/** 大尺寸手机设备 */
+const isMobile = breakpoints.smaller('tablet')
+console.log('isMobile', isMobile.value)
+
+/** 中小尺寸手机设备 */
+const isPhone = breakpoints.smaller('phone')
+console.log('phone', isPhone.value)
 </script>
 
 <style scoped>

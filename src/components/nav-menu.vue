@@ -41,6 +41,8 @@
 
 <script setup lang="ts">
 import { useWindowSize } from '@vueuse/core'
+import { isMobile } from '@/utils/branckOption'
+
 const { width, height } = useWindowSize()
 import { computed, watch, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
