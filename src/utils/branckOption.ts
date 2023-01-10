@@ -23,4 +23,11 @@ const isPhone = breakpoints.smaller('phone')
 console.log('phone', isPhone.value)
 
 export default { isPC, isTablet, isMobile, isPhone }
-export { isPC, isTablet, isMobile, isPhone }
+const className = {
+  pc: isPC.value,
+  mobile: isMobile.value,
+  tablet: isTablet.value,
+  'mobile-mini': isPhone.value,
+  'no-pc': !isPC.value
+}
+export { isPC, isTablet, isMobile, isPhone, className }
